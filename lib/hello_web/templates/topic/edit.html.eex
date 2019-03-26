@@ -1,0 +1,14 @@
+<%= form_for @changeset, Routes.topic_path(@conn, :edit, @topic.id), fn f -> %>
+ 
+    <h3>Update this Topic! (are you sure plushy?)</h3>
+    <div style="padding: 10px 0px 0px 0px">
+        <div class="input-field col s6">
+            <%= text_input f, :title, class: "validate", id: "topic_title" %> 
+            <%= error_tag f, :title %>
+            <label for="topic_title">Topic Title</label>
+        </div>
+    </div>
+    <!-- <%= submit "Save Topic", class: "btn btn-primary" %> -->
+    <%= submit "Update Topic", class: "blue lighten-1 btn btn-primary" %>
+
+<% end %>

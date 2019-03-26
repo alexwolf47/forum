@@ -1,0 +1,23 @@
+<h2>Topics</h2>
+        <nav class="purple lighten-2" role="navigation">
+          <ul>
+            <li><a href="/topics?order=az">A-Z</a></li>
+            <li><a href="/topics?order=date_new">Most recent</a></li>
+            <li><a href="/topics?order=date_old">Oldest</a></li>
+            <li><a href="/topics?last=5">Last 5</a></li>
+          </ul>
+            
+          
+        </nav>
+
+
+<ul class="collection">
+    <%= for topic <- @topics do %>
+    <li class="collection-item">
+    <%= topic.id %>: <%= link(topic.title, to: Routes.topic_path(@conn, :show, topic.id)) %>
+        <%= button("Edit Topic", to: Routes.topic_path(@conn, :edit, topic.id), method: "get", style: "float:right", class: "btn btn-tiny") %>
+    </li>
+    <% end %>
+
+</ul>
+    

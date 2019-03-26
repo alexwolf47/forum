@@ -1,0 +1,14 @@
+<%= form_for @changeset, Routes.session_path(@conn, :create), fn f -> %>
+
+    <h3>Create a session!</h3>
+    <div style="padding: 10px 0px 0px 0px">
+        <div class="input-field col s6">
+            <%= text_input f, :name, class: "validate", id: "session_name" %> 
+            <%= error_tag f, :name %>
+            <label for="session_name">Enter your name!</label>
+        </div>
+    </div>
+    <!-- <%= submit "Save Topic", class: "btn btn-primary" %> -->
+    <%= submit "Save Name", class: "blue lighten-1 btn btn-primary" %>
+
+<% end %>

@@ -1,0 +1,23 @@
+<%= form_for @changeset, Routes.topic_path(@conn, :create), fn f -> %>
+ 
+    <h3>Create a Topic!</h3>
+    <div style="padding: 10px 0px 0px 0px">
+        <div class="input-field col s6">
+            <%= text_input f, :title, class: "validate", id: "topic_title" %> 
+            <%= error_tag f, :title %>
+            <label for="topic_title">Topic Title</label>
+        </div>
+        </br>
+              <div class="row">
+        <div  class="input-field col s12">
+            <%= textarea f, :body, class: "materialize-textarea", id: "topic_body" %> 
+            <%= error_tag f, :body %>
+            <label for="topic_body">Describe your topic here!</label>
+        </div>
+        </div>
+    </div>
+    <!-- <%= submit "Save Topic", class: "btn btn-primary" %> -->
+    <%= submit "Save Topic", class: "blue lighten-1 btn btn-primary" %>
+
+<% end %>
+
