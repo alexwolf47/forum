@@ -22,6 +22,9 @@ defmodule HelloWeb.Router do
     post("/session", SessionController, :create)
     get("/session/delete", SessionController, :delete)
 
+    resources("/signin", LoginController, only: [:new, :create])
+    delete("/sign-out", LoginController, :delete)
+
     resources("/register", RegistrationController, only: [:new, :create])
 
     get("/topics", TopicController, :index)

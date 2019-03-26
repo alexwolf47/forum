@@ -9,7 +9,7 @@ defmodule HelloWeb.TopicController do
   ## Plug functions
 
   def auth_session(conn, _params) do
-    if UserAuth.user_signed_in?(conn) do
+    if HelloWeb.UserAuth.user_signed_in?(conn) do
       conn
     else
       conn

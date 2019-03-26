@@ -23,16 +23,29 @@
         <nav class="purple darken-4" role="navigation">
           <ul>
             <li><a href="/">Home</a></li> 
-            <li><a href="/topics">List of Topics</a></li>
-            <li><a href="/topics/new">Create a Topic</a></li>
+            <li><a href="/topics">Forum</a></li>
+            <!--<li><a href="/topics/new">Create a Topic</a></li>-->
+
+
+         <%= if HelloWeb.UserAuth.user_signed_in?(@conn) == false do %>
+                       <li><a href="/register/new">Register Here</a></li>
+            <li><a href="/signin/new">Login Here</a></li>
+            <% end %>
+            <%= if HelloWeb.UserAuth.user_signed_in?(@conn) do %>
+            <li>Logged in as <%= HelloWeb.UserAuth.current_user(@conn).username %>
+            <li><%= link "Log Out", to: Routes.login_path(@conn, :delete), method: :delete %></li>
+            <% end %>
+
+            <!--
             <%= if HelloWeb.UserAuth.user_signed_in?(@conn) == false do %>
             <li style="float: right; display:inline-block;" ><a href="/session">Log in</a></li>      
             <% end %>   
             <%= if HelloWeb.UserAuth.user_signed_in?(@conn) do %>
                         <li style="float: right; display:inline-block;" ><a href="/session/delete">Log out</a></li>
-            <li style="float: right; display:inline-block;">Welcome <%= HelloWeb.UserAuth.get_username(@conn) %>
+            <li style="float: right; display:inline-block;">Welcome (session) <%= HelloWeb.UserAuth.get_username(@conn) %>
  
             <% end %> 
+            -->
           </ul>
             
           
