@@ -7,6 +7,12 @@
             <%= error_tag f, :title %>
             <label for="topic_title">Topic Title</label>
         </div>
+        </br>       
+        <div class="input-field col s6">
+            <%= text_input f, :image_url, class: "validate", id: "topic_image_url" %> 
+            <%= error_tag f, :image_url %>
+            <label for="topic_image_url">Image URL</label>
+        </div>
         </br>
               <div class="row">
         <div  class="input-field col s12">

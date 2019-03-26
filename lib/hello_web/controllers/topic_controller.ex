@@ -2,14 +2,14 @@ defmodule HelloWeb.TopicController do
   use HelloWeb, :controller
   alias HelloWeb.Topic
   alias HelloWeb.TopicView
-  alias HelloWeb.UserAuth
+  alias Hello.Auth
 
   plug(:auth_session when action in [:new, :create, :edit, :update, :delete])
 
   ## Plug functions
 
   def auth_session(conn, _params) do
-    if HelloWeb.UserAuth.user_signed_in?(conn) do
+    if Auth.User.user_signed_in?(conn) do
       conn
     else
       conn
@@ -67,12 +67,18 @@ defmodule HelloWeb.TopicController do
   end
 
   def create(conn, %{"topic" => topic}) do
-    username = get_session(conn, :username)
+    # username = get_session(conn, :username)
+    user = Hello.Auth.User.current_user(conn)
+    username = user.username
+    user_id = user.id
+    username |> IO.inspect(label: "72")
+    user_id |> IO.inspect(label: "75")
 
     updated_topic =
       topic
       |> IO.inspect(label: "40")
       |> Map.put("created_by_user", username)
+      |> Map.put("user_id", user_id)
       |> IO.inspect(label: "42")
 
     changeset = Topic.changeset(%Topic{}, updated_topic)

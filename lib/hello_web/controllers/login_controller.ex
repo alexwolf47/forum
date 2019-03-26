@@ -1,13 +1,13 @@
 defmodule HelloWeb.LoginController do
   use HelloWeb, :controller
-  alias HelloWeb.UserAuth
+  alias Hello.Auth
 
   def new(conn, _params) do
     conn |> render("new.html")
   end
 
   def create(conn, %{"login" => %{"email" => email, "password" => password}}) do
-    case UserAuth.sign_in(email, password) do
+    case Auth.User.sign_in(email, password) do
       {:ok, user} ->
         conn
         |> put_session(:current_user_id, user.id)
@@ -23,7 +23,7 @@ defmodule HelloWeb.LoginController do
 
   def delete(conn, _params) do
     conn
-    |> UserAuth.sign_out()
+    |> Auth.User.sign_out()
     |> redirect(to: "/")
   end
 end
