@@ -5,6 +5,7 @@
             <li><a href="/topics?order=date_new">Most recent</a></li>
             <li><a href="/topics?order=date_old">Oldest</a></li>
             <li><a href="/topics?last=5">Last 5</a></li>
+            <li style="display: inline-block; float:right"><%= link("New Topic", to: Routes.topic_path(@conn, :new)) %></li>
           </ul>
             
           
@@ -15,7 +16,11 @@
     <%= for topic <- @topics do %>
     <li class="collection-item">
     <%= topic.id %>: <%= link(topic.title, to: Routes.topic_path(@conn, :show, topic.id)) %>
-        <%= button("Edit Topic", to: Routes.topic_path(@conn, :edit, topic.id), method: "get", style: "float:right", class: "btn btn-tiny") %>
+        <%=
+        if Plug.Conn.get_session(@conn, :current_user_id) == topic.user_id do
+         button("Edit Topic", to: Routes.topic_path(@conn, :edit, topic.id), method: "get", style: "float:right", class: "btn btn-tiny") 
+         end
+         %>
     </li>
     <% end %>
 

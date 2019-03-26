@@ -1,0 +1,48 @@
+<h1>Log in here!</h1>
+
+
+
+
+  <div class="row">
+    <%= form_for @conn, Routes.login_path(@conn, :create), [as: :login, class: "form s12"], fn f -> %>
+      <div class="row">
+        <div class="input-field col s6">
+          <%= text_input f, :email, class: "form-control", placeholder: "Email address", required: true, autofocus: true %>
+          <%= label f, :email, "Email address", class: "control-label" %>
+        </div>
+        <div class="input-field col s6">
+          <%= password_input f, :password, class: "form-control", placeholder: "Password", required: true %>
+          <%= label f, :password, class: "control-label" %>
+        </div>
+        <%= submit "Sign in", class: "btn btn-lg btn-primary btn-block" %>
+      </div>
+  <% end %>
+  </div>
+
+
+<!--
+<div class="auth-form-wrapper">
+
+
+
+  <%= form_for @conn, Routes.registration_path(@conn, :create), [as: :session, class: "form-signin col s12"], fn f -> %>
+    <div class="text-center mb-4">
+      <h1 class="h3 mb-3 font-weight-normal">Sign In</h1>
+    </div>
+
+    <div class="form-label-group">
+      <%= text_input f, :email, class: "form-control", placeholder: "Email address", required: true, autofocus: true %>
+      <%= label f, :email, "Email address", class: "control-label" %>
+    </div>
+
+    <div class="form-label-group">
+      <%= password_input f, :password, class: "form-control", placeholder: "Password", required: true %>
+      <%= label f, :password, class: "control-label" %>
+    </div>
+
+    <%= submit "Sign in", class: "btn btn-lg btn-primary btn-block" %>
+  <% end %>
+</div>
+-->
+
+
