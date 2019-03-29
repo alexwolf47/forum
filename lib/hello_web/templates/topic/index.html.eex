@@ -12,16 +12,12 @@
         </nav>
 
 
-<ul class="collection">
+<div class="collection">
     <%= for topic <- @topics do %>
-    <li class="collection-item">
-    <%= topic.id %>: <%= link(topic.title, to: Routes.topic_path(@conn, :show, topic.id)) %>
-        <%=
-        if Plug.Conn.get_session(@conn, :current_user_id) == topic.user_id do
-         button("Edit Topic", to: Routes.topic_path(@conn, :edit, topic.id), method: "get", style: "float:right", class: "btn btn-tiny") 
-         end
-         %>
-    </li>
+    <%= 
+    link(topic.title, to: Routes.topic_path(@conn, :show, topic.id), class: "collection-item") 
+   %>
+
     <% end %>
 
 </ul>

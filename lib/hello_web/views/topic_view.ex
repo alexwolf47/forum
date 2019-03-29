@@ -1,6 +1,8 @@
 defmodule HelloWeb.TopicView do
   use HelloWeb, :view
 
+  # def user_signed_in_render()
+
   def last_topics(topics, count) do
     slice_count = String.to_integer(count) - 1
 
@@ -26,4 +28,8 @@ defmodule HelloWeb.TopicView do
     topics
     |> Enum.sort_by(fn x -> x.id end)
   end
+
+  # def format_date(date) do
+  #   Timex.
+  # end
 end

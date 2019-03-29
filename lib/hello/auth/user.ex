@@ -9,6 +9,7 @@ defmodule Hello.Auth.User do
     field(:email, :string)
     field(:encrypted_password, :string)
     field(:username, :string)
+    field(:user_desc, :string)
     field(:password, :string, virtual: true)
     field(:password_confirmation, :string, virtual: true)
 
@@ -18,9 +19,10 @@ defmodule Hello.Auth.User do
   @doc false
   def changeset(%User{} = user, attrs) do
     user
-    |> cast(attrs, [:email, :username])
+    |> cast(attrs, [:email, :username, :user_desc])
     |> validate_required([:email, :username])
     |> validate_length(:username, min: 3, max: 30)
+    |> validate_length(:user_desc, max: 60)
     |> unique_constraint(:email)
     |> unique_constraint(:username)
   end
