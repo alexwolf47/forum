@@ -45,7 +45,8 @@ defmodule Hello.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:comeonin, "~> 4.0"},
       {:bcrypt_elixir, "~> 1.0"},
-      {:earmark, "~> 1.3.2"}
+      {:earmark, "~> 1.3.2"},
+      {:timex, "~> 3.1"}
     ]
   end
 

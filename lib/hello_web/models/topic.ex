@@ -14,6 +14,6 @@ defmodule HelloWeb.Topic do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:title, :created_by_user, :user_id, :body, :image_url])
-    |> validate_required([:title])
+    |> validate_required([:title, :body])
   end
 end

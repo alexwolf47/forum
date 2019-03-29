@@ -12,6 +12,11 @@
       <%= label f, :username, "User name", class: "control-label" %>
       <%= error_tag f, :username %>
         </div>
+                <div class="input-field col s12">
+      <%= text_input f, :user_desc, class: "form-control", placeholder: "User description", required: false %>
+      <%= label f, :user_desc, "User desc", class: "control-label" %>
+      <%= error_tag f, :user_desc %>
+        </div>
           <div class="input-field col s6">
       <%= password_input f, :password, class: "form-control", placeholder: "Password", required: true %>
       <%= label f, :password, class: "control-label" %>
