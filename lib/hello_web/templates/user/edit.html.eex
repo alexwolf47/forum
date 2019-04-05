@@ -1,0 +1,33 @@
+<h1>Edit User</h1>
+
+
+  <div class="row auth-form-wrapper">
+    <%= form_for @changeset, Routes.user_path(@conn, :update, @user.id), [as: :user_update, class: "form-signin"], fn f -> %>
+      <div class="row">
+        <div class="input-field col s12">
+      <%= text_input f, :email, class: "form-control", placeholder: "Email address", required: true, autofocus: true %>
+      <%= label f, :email, "Email address", class: "control-label" %>
+      <%= error_tag f, :email %>
+        </div>
+        <div class="input-field col s12">
+      <%= text_input f, :username, class: "form-control", placeholder: "User name", required: true %>
+      <%= label f, :username, "User name", class: "control-label" %>
+      <%= error_tag f, :username %>
+        </div>
+                  <div class="input-field col s12">
+      <%= text_input f, :user_image, class: "form-control", placeholder: "User image", required: false %>
+      <%= label f, :user_image, "User img", class: "control-label" %>
+      <%= error_tag f, :user_image %>
+        </div>
+                <div class="input-field col s12">
+      <%= text_input f, :user_desc, class: "form-control", placeholder: "User description", required: false %>
+      <%= label f, :user_desc, "User desc", class: "control-label" %>
+      <%= error_tag f, :user_desc %>
+        </div>
+        <%= submit "Save changes", class: "btn btn-lg btn-primary btn-block" %>
+      </div>
+ <% end %>
+  </div>
+  
+
+

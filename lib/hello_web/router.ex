@@ -27,6 +27,8 @@ defmodule HelloWeb.Router do
 
     resources("/register", RegistrationController, only: [:new, :create])
 
+    resources("/users", UserController)
+
     get("/topics", TopicController, :index)
     get("/topics/new", TopicController, :new)
     post("/topics/new", TopicController, :create)
