@@ -35,3 +35,9 @@
       </div>
     </div>
   </div>
+<%= for comment <- @comments do %>
+  <div>
+  <%= comment.user_id %></div>
+  <div><%= comment.comment %></div>
+
+  <% end %>

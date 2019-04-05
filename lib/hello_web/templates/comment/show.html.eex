@@ -1,0 +1,32 @@
+<h1>Show Comment</h1>
+
+<ul>
+
+  <li>
+    <strong>User:</strong>
+    <%= @comment.user_id %>
+  </li>
+
+  <li>
+    <strong>Topic:</strong>
+    <%= @comment.topic_id %>
+  </li>
+
+  <li>
+    <strong>Comment:</strong>
+    <%= @comment.comment %>
+  </li>
+
+  <li>
+    <strong>Likes:</strong>
+    <%= @comment.likes %>
+  </li>
+
+  <li>
+    <strong>Reply to:</strong>
+    <%= @comment.reply_to %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.comment_path(@conn, :edit, @comment) %></span>

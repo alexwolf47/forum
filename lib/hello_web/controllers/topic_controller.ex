@@ -97,7 +97,11 @@ defmodule HelloWeb.TopicController do
   def show(conn, %{"id" => topic_id}) do
     topic = Repo.get!(Topic, topic_id)
 
-    render(conn, "show.html", topic: topic)
+    comments =
+      HelloWeb.CommentController.index(conn, %{}, topic_id)
+      |> IO.inspect(label: "comments in show")
+
+    render(conn, "show.html", topic: topic, comments: comments)
   end
 
   def edit(conn, %{"id" => topic_id}) do
@@ -122,5 +126,3 @@ defmodule HelloWeb.TopicController do
     render(conn, "index.html", topics: topics)
   end
 end
-
-

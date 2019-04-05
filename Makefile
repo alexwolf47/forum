@@ -3,3 +3,6 @@ start_psql:
 
 serve:
 	mix phx.server
+
+phxr:
+	mix phx.routes
