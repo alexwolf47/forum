@@ -17,6 +17,17 @@
   </script>
 
     <style>
+  body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+      
+
     .btn-tiny {
     height: 24px;
     line-height: 24px;
@@ -27,8 +38,8 @@
   height: 400px; 
 
   /* Create the parallax scrolling effect */
-  background-attachment: fixed;
-  background-position: center top;
+
+  background-position: center;
   background-repeat: no-repeat;
   background-size: 100% ;
 }
@@ -142,7 +153,7 @@
 
      <section class="container" style="width:100%;">
 
-        <nav class="teal darken-2" role="navigation">
+        <nav class="blue-grey darken-4" role="navigation">
   
           <ul>
             <li><a href="/">Home</a></li> 
@@ -192,6 +203,38 @@
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
       <%= render @view_module, @view_template, assigns %>
     </main>
+
+
+
+
+    
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+
+
+ <footer class="page-footer blue-grey darken-2" style="margin-top: 40px;">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">Cat and Wolf Forum</h5>
+                <p class="grey-text text-lighten-4">A simple forum made for experimenting and learning Phoenix and Elixir.</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="/">Home</a></li>
+                  <li><a class="grey-text text-lighten-3" href="/topics">Forum</a></li>
+                  <li><a class="grey-text text-lighten-3" href="/users">Users</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://github.com/alexwolf47/forum" target="_blank">GitHub Repo</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            Made with Phoenix
+            <a class="grey-text text-lighten-4 right" href="#top">Top</a>
+            </div>
+          </div>
+        </footer> 
   </body>
 </html>

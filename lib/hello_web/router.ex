@@ -41,6 +41,8 @@ defmodule HelloWeb.Router do
       resources("/comments", CommentController)
     end
 
+    put("/topics/:id/edit", TopicController, :update)
+    put("/topics/:topic_id/comments/:id/edit", TopicController, :update)
     # Other scopes may use custom stacks.
     # scope "/api", HelloWeb do
     #   pipe_through :api

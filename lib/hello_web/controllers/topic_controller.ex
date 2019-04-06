@@ -50,7 +50,7 @@ defmodule HelloWeb.TopicController do
     # Make a test
     # conn |> user_signed_in? |> IO.inspect(label: "Index - User signed in result")
 
-    topics = Repo.all(Topic) |> Enum.sort_by(fn x -> x.id end)
+    topics = Repo.all(Topic) |> TopicView.order_by_date_new()
     render(conn, "index.html", topics: topics)
   end
 
@@ -87,7 +87,8 @@ defmodule HelloWeb.TopicController do
     case Repo.insert(changeset) do
       {:ok, _post} ->
         topics = Repo.all(Topic)
-        render(conn, "index.html", topics: topics)
+        conn
+        |> redirect(to: Routes.topic_path(conn, :index))
 
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -128,7 +129,10 @@ defmodule HelloWeb.TopicController do
     Repo.update(changeset)
 
     topics = Repo.all(Topic)
-    render(conn, "index.html", topics: topics)
+    # render(conn, "index.html", topics: topics)
+    conn
+    |> redirect(to: Routes.topic_path(conn, :index))
+
   end
 
   def delete(conn, %{"id" => topic_id}) do
