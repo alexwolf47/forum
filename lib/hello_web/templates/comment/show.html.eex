@@ -29,4 +29,4 @@
 
 </ul>
 
-<span><%= link "Edit", to: Routes.comment_path(@conn, :edit, @comment) %></span>
+<span><%= link "Edit", to: Routes.comment_path(@conn, :edit, @topic.id) %></span>

@@ -98,10 +98,22 @@ defmodule HelloWeb.TopicController do
     topic = Repo.get!(Topic, topic_id)
 
     comments =
-      HelloWeb.CommentController.index(conn, %{}, topic_id)
+      HelloWeb.CommentController.list_comments(topic_id)
       |> IO.inspect(label: "comments in show")
 
-    render(conn, "show.html", topic: topic, comments: comments)
+    comment_changeset = HelloWeb.CommentController.create_changeset(topic_id)
+
+    comment_changeset |> IO.inspect(label: "COmment changeset")
+
+    # Comments.change_comment(%Comment{})
+    # |> Map.put(:topic_id, topic.id)
+    # |> IO.inspect(label: "Topic changeset")
+
+    render(conn, "show.html",
+      topic: topic,
+      comments: comments,
+      comment_changeset: comment_changeset
+    )
   end
 
   def edit(conn, %{"id" => topic_id}) do

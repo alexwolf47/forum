@@ -21,16 +21,21 @@ defmodule HelloWeb.CommentController do
   #   render(conn, "index.html", topics: topics)
   # end
 
-  def index(_conn, _params, topic) do
-    topic |> IO.inspect(label: "topic index")
-    topic_comments = Comments.list_topic_comments()
-    # render(conn, "index.html", topic_comments: topic_comments)
-    topic_comments
+  def list_comments(topic_id) do
+    Comments.list_topic_comments(topic_id)
   end
 
-  def new(conn, _params) do
-    changeset = Comments.change_comment(%Comment{})
-    render(conn, "new.html", changeset: changeset)
+  def create_changeset(topic_id) do
+    comment_changeset = Comment.changeset(%Comment{}, %{topic_id: topic_id})
+
+    comment_changeset
+
+    # comment_changeset =
+    #   Comments.change_comment(%Comment{})
+    #   |> Map.put(:topic_id, topic.id)
+    #   |> IO.inspect(label: "Topic changeset")
+
+    # render(conn, "new.html", comment_changeset: comment_changeset)
   end
 
   def create(conn, %{"comment" => comment_params}) do

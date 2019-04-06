@@ -12,16 +12,16 @@
       <th></th>
     </tr>
   </thead>
-  <tbody>
+  <tbody>   
+   <ul class="collection">
 <%= for comment <- @topic_comments do %>
-    <tr>
-      <td><%= comment.user_id %></td>
-      <td><%= comment.topic_id %></td>
-      <td><%= comment.comment %></td>
-      <td><%= comment.likes %></td>
 
-    </tr>
+
+      <li class="collection-item"><%= comment.comment %></li>
+
 <% end %>
+
+    </ul>
   </tbody>
 </table>
 

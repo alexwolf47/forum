@@ -21,6 +21,17 @@ defmodule Hello.Topic.Comments do
     Repo.all(Comment)
   end
 
+  def list_topic_comments(topic_id) do
+    (from c in Comment,
+      where: c.topic_id == ^topic_id
+    )
+    |> Repo.all()
+
+    # Comment |> where([comment], comment.topic_id in 3) |> Repo.all()
+
+    # Repo.all(Comment, topic_id: topic_id)
+  end
+
   @doc """
   Gets a single comment.
 
