@@ -1,11 +1,11 @@
 <h2>Topics</h2>
-        <nav class="purple lighten-2" role="navigation">
+        <nav class="deep-orange darken-2" role="navigation">
           <ul>
             <li><a href="/topics?order=az">A-Z</a></li>
             <li><a href="/topics?order=date_new">Most recent</a></li>
             <li><a href="/topics?order=date_old">Oldest</a></li>
             <li><a href="/topics?last=5">Last 5</a></li>
-            <li style="display: inline-block; float:right"><%= link("New Topic", to: Routes.topic_path(@conn, :new)) %></li>
+            <li style="display: inline-block; float:right"><%= link("New Topic", to: Routes.topic_path(@conn, :new), class: "waves-effect waves-light btn") %></li>
           </ul>
             
           

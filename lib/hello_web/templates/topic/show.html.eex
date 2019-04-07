@@ -35,3 +35,25 @@
       </div>
     </div>
   </div>
+
+<div>
+   <ul class="collection">
+<%= for comment <- @comments do %>
+
+
+      <li class="collection-item"><%= comment.comment %></li>
+
+<% end %>
+
+    </ul>
+</div>
+
+
+
+
+
+<div>
+  <h1>New Comment</h1>
+
+<%= render "comment_form.html", Map.put(assigns, :action, Routes.topic_comment_path(@conn, :create, @topic.id)) %>
+</div>

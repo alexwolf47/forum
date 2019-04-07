@@ -1,0 +1,27 @@
+<h1>Listing Topic comments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Topic</th>
+      <th>Comment</th>
+      <th>Likes</th>
+      <th>Reply to</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>   
+   <ul class="collection">
+<%= for comment <- @topic_comments do %>
+
+
+      <li class="collection-item"><%= comment.comment %></li>
+
+<% end %>
+
+    </ul>
+  </tbody>
+</table>
+

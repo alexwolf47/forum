@@ -50,7 +50,7 @@ defmodule HelloWeb.TopicController do
     # Make a test
     # conn |> user_signed_in? |> IO.inspect(label: "Index - User signed in result")
 
-    topics = Repo.all(Topic) |> Enum.sort_by(fn x -> x.id end)
+    topics = Repo.all(Topic) |> TopicView.order_by_date_new()
     render(conn, "index.html", topics: topics)
   end
 
@@ -87,7 +87,8 @@ defmodule HelloWeb.TopicController do
     case Repo.insert(changeset) do
       {:ok, _post} ->
         topics = Repo.all(Topic)
-        render(conn, "index.html", topics: topics)
+        conn
+        |> redirect(to: Routes.topic_path(conn, :index))
 
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -97,7 +98,23 @@ defmodule HelloWeb.TopicController do
   def show(conn, %{"id" => topic_id}) do
     topic = Repo.get!(Topic, topic_id)
 
-    render(conn, "show.html", topic: topic)
+    comments =
+      HelloWeb.CommentController.list_comments(topic_id)
+      |> IO.inspect(label: "comments in show")
+
+    comment_changeset = HelloWeb.CommentController.create_changeset(topic_id)
+
+    comment_changeset |> IO.inspect(label: "COmment changeset")
+
+    # Comments.change_comment(%Comment{})
+    # |> Map.put(:topic_id, topic.id)
+    # |> IO.inspect(label: "Topic changeset")
+
+    render(conn, "show.html",
+      topic: topic,
+      comments: comments,
+      comment_changeset: comment_changeset
+    )
   end
 
   def edit(conn, %{"id" => topic_id}) do
@@ -112,7 +129,10 @@ defmodule HelloWeb.TopicController do
     Repo.update(changeset)
 
     topics = Repo.all(Topic)
-    render(conn, "index.html", topics: topics)
+    # render(conn, "index.html", topics: topics)
+    conn
+    |> redirect(to: Routes.topic_path(conn, :index))
+
   end
 
   def delete(conn, %{"id" => topic_id}) do

@@ -27,13 +27,22 @@ defmodule HelloWeb.Router do
 
     resources("/register", RegistrationController, only: [:new, :create])
 
-    get("/topics", TopicController, :index)
-    get("/topics/new", TopicController, :new)
-    post("/topics/new", TopicController, :create)
-    get("/topics/:id", TopicController, :show)
-    get("/topics/:id/edit", TopicController, :edit)
+    resources("/users", UserController)
+
+    # get("/topics", TopicController, :index)
+    # get("/topics/new", TopicController, :new)
+    # post("/topics/new", TopicController, :create)
+    # get("/topics/:id", TopicController, :show)
+    # get("/topics/:id/edit", TopicController, :edit)
+    # put("/topics/:id/edit", TopicController, :update)
+    # delete("/topics/:id", TopicController, :delete)
+
+    resources("/topics", TopicController) do
+      resources("/comments", CommentController)
+    end
+
     put("/topics/:id/edit", TopicController, :update)
-    delete("/topics/:id", TopicController, :delete)
+    put("/topics/:topic_id/comments/:id/edit", TopicController, :update)
     # Other scopes may use custom stacks.
     # scope "/api", HelloWeb do
     #   pipe_through :api
